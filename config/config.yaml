@@ -1,0 +1,8 @@
+data:
+  raw: "data/raw"
+  processed: "data/processed"
+  interim: "data/interim"
+  external: "data/external"
+
+models:
+  model_path: "models"
