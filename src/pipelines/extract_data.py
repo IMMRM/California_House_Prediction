@@ -6,7 +6,7 @@ import sklearn.datasets
 from src.logger import logger
 from src.utils.common import read_yaml
 from src.constants import CONFIG_PATH
-def get_date():
+def get_data():
     logger.info("Data Extraction Started...")
     try:
         data=sklearn.datasets.fetch_california_housing()
@@ -19,4 +19,4 @@ def get_date():
         logger.info("Data Loaded Successfully!")
     except Exception as e:
         raise e
-get_date()
+get_data()
