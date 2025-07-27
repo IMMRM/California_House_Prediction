@@ -23,13 +23,13 @@ def preprocess(input_path,output_path):
         df=df[features]
         scaler = StandardScaler()
         scaled_features = scaler.fit_transform(df.drop('price', axis=1))
-        df = pd.DataFrame(scaled_features, columns=df.columns[:-1])
+        scaled_df = pd.DataFrame(scaled_features, columns=df.columns[:-1])
         # Clip outliers (e.g., cap at 99th percentile)
         for col in ['Population']:
-            upper_limit = df[col].quantile(0.99)
-            df[col] = df[col].clip(upper=upper_limit)
-        
-        df.to_csv(output_path,index=False)
+            upper_limit = scaled_df[col].quantile(0.99)
+            scaled_df[col] = scaled_df[col].clip(upper=upper_limit)
+        scaled_df=pd.concat([scaled_df,df['price']],axis=1)
+        scaled_df.to_csv(output_path,index=False)
         logger.info(" Data Preprocessing was successfull!")
         return scaler
     except Exception as e:
