@@ -31,12 +31,13 @@ def preprocess(input_path,output_path):
         scaled_df=pd.concat([scaled_df,df['price']],axis=1)
         scaled_df.to_csv(output_path,index=False)
         logger.info(" Data Preprocessing was successfull!")
-        return scaler
+        return scaler,upper_limit
     except Exception as e:
         logger.error(e)
 
 #function responsible for the run
 def run():
-    scaler=preprocess(Path(params['data']['raw'])/"housing_raw_data.csv",Path(params['data']['processed'])/"processed_data.csv")
+    scaler,upper_limit=preprocess(Path(params['data']['raw'])/"housing_raw_data.csv",Path(params['data']['processed'])/"processed_data.csv")
     jb.dump(scaler,Path(params['models']['model_path'])/"scaler.pkl")
+    jb.dump(upper_limit,Path(params['models']['model_path'])/"pop_99.pkl")
     
