@@ -1,6 +1,13 @@
-black
-flake8
-isort
-pip
-python-dotenv
--e .
+dagshub==0.6.2
+ensure==1.0.4
+fastapi==0.116.1
+joblib==1.5.1
+mlflow==2.22.1
+mlflow_skinny==2.22.1
+numpy
+pandas==2.3.1
+pydantic==2.11.7
+python_box==7.3.2
+PyYAML==6.0.2
+PyYAML==6.0.2
+scikit_learn==1.7.1
