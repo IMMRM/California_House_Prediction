@@ -23,7 +23,7 @@ jobs:
         run: pytest
       
       - name: Build docker image
-        run: docker build -t california-housing-prediction-api
+        run: docker build -t california-housing-prediction-api .
       
       - name: Login to DockerHub
         uses: docker/login-action@v2
