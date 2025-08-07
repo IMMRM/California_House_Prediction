@@ -9,11 +9,11 @@ DB_CONNECT=read_yaml(CONFIG_PATH)
 
 # Database connection parameters (you can also load from a config file or env vars)
 DB_PARAMS = {
-    "dbname": DB_CONNECT['PostGres_DB']['DB_NAME'] ,
-    "user": DB_CONNECT['PostGres_DB']['DB_USER'],
-    "password": DB_CONNECT['PostGres_DB']['DB_PWD'],
-    "host": DB_CONNECT['PostGres_DB']['DB_HOST'],
-    "port": DB_CONNECT['PostGres_DB']['DB_PORT']
+    "dbname": 'postgres', #DB_CONNECT['PostGres_DB']['DB_NAME'] ,
+    "user": 'postgres', #DB_CONNECT['PostGres_DB']['DB_USER'],
+    "password": 'postgres' ,#DB_CONNECT['PostGres_DB']['DB_PWD'],
+    "host": 'database-1.c5eqggq6w2s1.ap-south-1.rds.amazonaws.com', #DB_CONNECT['PostGres_DB']['DB_HOST'],
+    "port": 5432
 }
 
 def init_db():
