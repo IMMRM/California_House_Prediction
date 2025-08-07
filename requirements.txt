@@ -8,8 +8,9 @@ numpy
 pandas==2.3.1
 psycopg2_binary==2.9.10
 pydantic==2.11.7
+pytest
 python_box==7.3.2
 PyYAML==6.0.2
-PyYAML==6.0.2
 scikit_learn==1.7.1
-pytest
+
+
