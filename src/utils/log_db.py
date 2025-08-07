@@ -2,10 +2,10 @@ import psycopg2
 from psycopg2 import sql
 from datetime import datetime
 import json
-from src.constants import SECRET_PATH
+from src.constants import CONFIG_PATH
 from src.utils.common import read_yaml
 
-DB_CONNECT=read_yaml(SECRET_PATH)
+DB_CONNECT=read_yaml(CONFIG_PATH)
 
 # Database connection parameters (you can also load from a config file or env vars)
 DB_PARAMS = {
