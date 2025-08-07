@@ -8,7 +8,7 @@ from src.utils.common import read_yaml
 from src.constants import CONFIG_PATH
 from pathlib import Path
 import json
-from src.utils.log_db import init_db,log_to_db
+#from src.utils.log_db import init_db,log_to_db
 
 
 #read the Config path
@@ -56,7 +56,7 @@ def read():
     return {"message":"California Housing Prediction is running..."}
 
 # initiating the connection
-init_db()
+#init_db()
 
 @app.post("/predict")
 def predict(data:InputData):
@@ -65,7 +65,7 @@ def predict(data:InputData):
     input_df=preprocess_input(input_df)
     res=model.predict(input_df)
     #Save to postgres
-    log_to_db(data.model_dump(),float(res[0]))
+    #log_to_db(data.model_dump(),float(res[0]))
     return  {"prediction:",float(res[0])} #input_df.to_dict(orient="records")[0]
 
 # uvicorn app:app --reload
