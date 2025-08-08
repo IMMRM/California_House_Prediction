@@ -2,13 +2,14 @@ import psycopg2
 from psycopg2 import sql
 from datetime import datetime
 import json
-from src.constants import SECRET_PATH
+
 from src.utils.common import read_yaml
 import os
 
 
 #Read secrets only if not running in CI
 if os.getenv("CI_ENV")!="true":
+    from src.constants import SECRET_PATH
     DB_CONNECT=read_yaml(SECRET_PATH)
     # Database connection parameters (you can also load from a config file or env vars)
     DB_PARAMS = {
