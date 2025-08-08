@@ -19,4 +19,3 @@ def get_data():
         logger.info("Data Loaded Successfully!")
     except Exception as e:
         raise e
-get_data()

@@ -9,7 +9,7 @@ from src.constants import CONFIG_PATH
 from pathlib import Path
 import json
 from src.utils.log_db import init_db,log_to_db
-
+from src.pipelines.retrain_on_new_data import retrain_with_new_data
 
 #read the Config path
 path=read_yaml(CONFIG_PATH)
@@ -68,6 +68,11 @@ def predict(data:InputData):
     log_to_db(data.model_dump(),float(res[0]))
     return  {"prediction:",float(res[0])} #input_df.to_dict(orient="records")[0]
 
+
+@app.post("/retrain")
+def retrain():
+    retrain_with_new_data()  # this runs your retraining pipeline
+    return {"message": "Retraining started and completed successfully"}
 # uvicorn app:app --reload
 
     
