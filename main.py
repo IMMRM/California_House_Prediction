@@ -23,4 +23,4 @@ logger.info("---------------------------- Data Preprocessing run ended ---------
 # Begginning the training
 logger.info("------------------------- Training started----------------------------------------")
 train.train_run()
-logger.info("------------------------------ Training completed-------------------------------------")
+logger.info("------------------------------ Training completed-----------------------------------")
