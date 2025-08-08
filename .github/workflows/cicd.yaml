@@ -24,7 +24,7 @@ jobs:
       - name: Run Pytest
         run: pytest
         env: 
-          CI_ENV: "true"
+          CI_ENV: ${{ secrets.CI_ENV }} #"true" #change it to false when not in CI
 
   build:
     name: 🐳 Build Docker Image
