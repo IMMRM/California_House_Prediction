@@ -4,24 +4,31 @@ from datetime import datetime
 import subprocess
 import os
 from src.utils.common import read_yaml
-from src.constants import CONFIG_PATH, SECRET_PATH
+from src.constants import CONFIG_PATH
 from src.pipelines import preprocess
 from pathlib import Path
 from src.logger import logger
 
 # Load secrets and config
 config = read_yaml(CONFIG_PATH)
-secrets = read_yaml(SECRET_PATH)
 
-DB_PARAMS = {
-    "dbname": secrets['PostGres_DB']['DB_NAME'],
-    "user": secrets['PostGres_DB']['DB_USER'],
-    "password": secrets['PostGres_DB']['DB_PWD'],
-    "host": secrets['PostGres_DB']['DB_HOST'],
-    "port": secrets['PostGres_DB']['DB_PORT']
-}
+if(os.getenv("CI_ENV")!="true"):
+    from src.constants import SECRET_PATH
+    secrets = read_yaml(SECRET_PATH)
+    DB_PARAMS = {
+        "dbname": secrets['PostGres_DB']['DB_NAME'],
+        "user": secrets['PostGres_DB']['DB_USER'],
+        "password": secrets['PostGres_DB']['DB_PWD'],
+        "host": secrets['PostGres_DB']['DB_HOST'],
+        "port": secrets['PostGres_DB']['DB_PORT']
+    }
+else:
+    secrets=None
 
 def fetch_new_data():
+    if(os.getenv("CI_ENV")=="true"):
+        print("Running in CI - Skipping DB Init")
+        return
     conn = psycopg2.connect(**DB_PARAMS)
     df = pd.read_sql("SELECT * FROM new_housing_data;", conn)
     conn.close()
