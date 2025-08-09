@@ -1,61 +1,57 @@
-# California_Housing_Prediction
+# California Housing Price Prediction 🏡
 
-<a target="_blank" href="https://cookiecutter-data-science.drivendata.org/">
-    <img src="https://img.shields.io/badge/CCDS-Project%20template-328F97?logo=cookiecutter" />
-</a>
+## 📌 Project Overview  
+This project predicts **California housing prices** using a **Machine Learning pipeline** with automated **data ingestion, preprocessing, training, and retraining**. It supports **real-time retraining** when new data arrives in the PostgreSQL database.  
 
-A minimal end-to-end MLOps pipeline for California Housing price prediction, built as part of my Master’s program assignment.
+---
 
-## Project Organization
+## 🛠️ Tech Stack  
+- **Python** – Core programming language  
+- **FastAPI** – API for triggering retraining  
+- **PostgreSQL (AWS RDS)** – Data storage  
+- **scikit-learn** – Model building  
+- **MLflow** – Experiment tracking  
+- **DVC & DagsHub** – Data & model versioning  
+- **Docker** – Containerization  
+- **Grafana** – Monitoring model metrics  
+- **GitHub Actions** – CI/CD automation  
 
-```
-├── LICENSE            <- Open-source license if one is chosen
-├── Makefile           <- Makefile with convenience commands like `make data` or `make train`
-├── README.md          <- The top-level README for developers using this project.
-├── data
-│   ├── external       <- Data from third party sources.
-│   ├── interim        <- Intermediate data that has been transformed.
-│   ├── processed      <- The final, canonical data sets for modeling.
-│   └── raw            <- The original, immutable data dump.
-│
-├── docs               <- A default mkdocs project; see www.mkdocs.org for details
-│
-├── models             <- Trained and serialized models, model predictions, or model summaries
-│
-├── notebooks          <- Jupyter notebooks. Naming convention is a number (for ordering),
-│                         the creator's initials, and a short `-` delimited description, e.g.
-│                         `1.0-jqp-initial-data-exploration`.
-│
-├── pyproject.toml     <- Project configuration file with package metadata for 
-│                         california_housing_prediction and configuration for tools like black
-│
-├── references         <- Data dictionaries, manuals, and all other explanatory materials.
-│
-├── reports            <- Generated analysis as HTML, PDF, LaTeX, etc.
-│   └── figures        <- Generated graphics and figures to be used in reporting
-│
-├── requirements.txt   <- The requirements file for reproducing the analysis environment, e.g.
-│                         generated with `pip freeze > requirements.txt`
-│
-├── setup.cfg          <- Configuration file for flake8
-│
-└── california_housing_prediction   <- Source code for use in this project.
-    │
-    ├── __init__.py             <- Makes california_housing_prediction a Python module
-    │
-    ├── config.py               <- Store useful variables and configuration
-    │
-    ├── dataset.py              <- Scripts to download or generate data
-    │
-    ├── features.py             <- Code to create features for modeling
-    │
-    ├── modeling                
-    │   ├── __init__.py 
-    │   ├── predict.py          <- Code to run model inference with trained models          
-    │   └── train.py            <- Code to train models
-    │
-    └── plots.py                <- Code to create visualizations
-```
+## ⚙️ Workflow  
 
---------
+1. **Data Extraction**  
+   - Pulls housing data from an external source into **AWS PostgreSQL**.  
+
+2. **Data Preprocessing**  
+   - Cleans, scales, and handles outliers.  
+
+3. **Model Training**  
+   - Trains a regression model and saves it with a timestamp.  
+   - Tracks experiments in **MLflow**.  
+   - Pushes models to **DVC/DagsHub**.  
+
+4. **Retraining Trigger**  
+   - When new data arrives in PostgreSQL, a FastAPI endpoint triggers retraining automatically.  
+
+5. **Monitoring**  
+   - Metrics visualized in **Grafana**.  
+
+## 🔄 CI/CD & Version Control  
+
+- **GitHub Repository** – Stores project code.  
+- **DagsHub** – Stores datasets & models with versioning.  
+- **DockerHub** – Hosts project container image.  
+- **GitHub Actions** – Automates testing & deployment.  
+
+---
+
+## 🚀 How to Run  
+
+1. **Clone the repository**  
+   ```bash
+   git clone <repo-url>
+   cd california_housing_prediction
+2. **Install dependencies**
+    pip install -r requirements.txt
+3. **Run the FastAPI Server**
+    uvicorn app:app --reload
 
